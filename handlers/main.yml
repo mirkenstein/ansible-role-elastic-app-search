@@ -1,0 +1,16 @@
+---
+# handlers file for elastic-app-search
+- name: reload systemd configuration
+  become: yes
+  systemd:
+    daemon_reload: true
+
+# Restart service and ensure it is enabled
+
+- name: restart app-search
+  become: yes
+  service: name=app-search state=restarted enabled=yes
+  when:
+    - es_restart_on_change
+    - es_start_service
+  register: es_restarted

@@ -1,0 +1,6 @@
+---
+# defaults file for elastic-app-search
+es_version: "7.6.2"
+es_use_repository: false
+es_start_service: true
+es_restart_on_change: true

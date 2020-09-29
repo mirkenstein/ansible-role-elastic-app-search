@@ -1,0 +1,6 @@
+---
+# tasks file for elastic-app-search
+- name: include elastic-app-search.yml
+  include: elastic-app-search.yml
+  tags:
+    - install
