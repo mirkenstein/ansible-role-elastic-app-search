@@ -15,7 +15,9 @@ A description of the settable variables for this role should go here, including 
 
 Dependencies
 ------------
-
+https://www.elastic.co/guide/en/kibana/7.9/settings.html
+https://www.elastic.co/guide/en/kibana/7.9/elasticsearch-mutual-tls.html
+https://swiftype.com/documentation/app-search/self-managed/configuration
 A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook

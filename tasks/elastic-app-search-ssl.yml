@@ -9,6 +9,21 @@
     group: "{{ es_group }}"
     mode: "750"
 
+- name: Upload SSL/TLS key and certificate
+  become: yes
+  copy:
+    src: "{{ item }}"
+    dest: "{{ es_ssl_certificate_path }}/{{ item | basename }}"
+    owner: "{{ es_user }}"
+    group: "{{ es_group }}"
+    mode: "640"
+  with_items:
+    - "{{ es_ssl_key }}"
+    - "{{ es_ssl_certificate }}"
+  when: es_ssl_key and es_ssl_certificate
+  notify: restart app-search
+  register: copy_certificates
+
 - name: Upload Elasticsearch CA Certificate
   become: yes
   copy:
@@ -25,7 +40,7 @@
 - name: Upload SSL/TLS keystore
   become: yes
   copy:
-    src: "{{ es_ssl_ca }}"
+    src: "{{ app_search_ssl_keystore }}"
     dest: "{{ es_ssl_certificate_path }}/{{ app_search_ssl_keystore | basename }}"
     owner: "{{ es_user }}"
     group: "{{ es_group }}"

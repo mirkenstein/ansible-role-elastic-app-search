@@ -37,12 +37,13 @@ elasticsearch.password: {{es_app_search_pass}}
 # Elasticsearch SSL settings:
 #
 elasticsearch.ssl.enabled: true
-#elasticsearch.ssl.certificate:
 {% if es_ssl_ca %}
 elasticsearch.ssl.certificate_authority: {{es_ssl_certificate_path}}/{{ es_ssl_ca | basename }}
+{% elif es_ssl_key and es_ssl_certificate and es_ssl_key_password %}
+elasticsearch.ssl.certificate: {{es_ssl_certificate}}
+elasticsearch.ssl.key: {{es_ssl_key}}
+elasticsearch.ssl.key_passphrase: {{es_ssl_key_password}}
 {% endif %}
-#elasticsearch.ssl.key:
-#elasticsearch.ssl.key_passphrase:
 {% if es_ssl_verify %}
 elasticsearch.ssl.verify: {{ es_ssl_verify }}
 {% endif %}
