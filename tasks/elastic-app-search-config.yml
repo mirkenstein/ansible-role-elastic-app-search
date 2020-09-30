@@ -1,0 +1,13 @@
+---
+- name: Copy Configuration File
+  become: yes
+  template:
+    src: app-search.yml.j2
+    dest: "{{ es_conf_dir }}/app-search.yml"
+    owner: root
+    group: "{{ es_group }}"
+    mode: "660"
+    force: yes
+  register: system_change
+  notify: restart app-search
+

@@ -4,3 +4,14 @@
   include: elastic-app-search.yml
   tags:
     - install
+
+- name: include elastic-app-search-config.yml
+  include: elastic-app-search-config.yml
+  tags:
+    - config
+
+- name: include elastic-app-search-ssl.yml
+  include: elastic-app-search-ssl.yml
+  when: es_ssl_enabled
+  tags:
+    - config

@@ -4,3 +4,26 @@ es_version: "7.6.2"
 es_use_repository: false
 es_start_service: true
 es_restart_on_change: true
+
+
+es_user: app-search
+es_group: app-search
+
+es_conf_dir: "/usr/share/app-search/config"
+es_ssl_certificate_path: "{{ es_conf_dir }}/certs"
+
+es_host: localhost
+es_app_search_user: elastic
+es_app_search_pass: changeme
+
+app_search_auth_src: elasticsearch-native
+es_ssl_enabled: true
+es_ssl_ca: "tests/integration/files/certs/shared-store-no-password-ca.p12"
+
+es_ssl_verify: "false"
+
+app_search_ssl_enabled: true
+app_search_ssl_keystore: "tests/integration/files/certs/keystore-password.p12"
+app_search_ssl_keystore_password: elastic
+app_search_ssl_keystore_key_password: elastic
+

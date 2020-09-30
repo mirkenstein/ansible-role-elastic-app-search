@@ -1,0 +1,35 @@
+---
+
+- name: ensure certificate directory exists
+  become: yes
+  file:
+    dest: "{{ es_ssl_certificate_path }}"
+    state: directory
+    owner: "{{ es_user }}"
+    group: "{{ es_group }}"
+    mode: "750"
+
+- name: Upload Elasticsearch CA Certificate
+  become: yes
+  copy:
+    src: "{{ es_ssl_ca }}"
+    dest: "{{ es_ssl_certificate_path }}/{{ es_ssl_ca | basename }}"
+    owner: "{{ es_user }}"
+    group: "{{ es_group }}"
+    mode: "640"
+  when: es_ssl_ca and es_ssl_enabled
+  notify: restart app-search
+  register: copy_es_cafile
+
+
+- name: Upload SSL/TLS keystore
+  become: yes
+  copy:
+    src: "{{ es_ssl_ca }}"
+    dest: "{{ es_ssl_certificate_path }}/{{ app_search_ssl_keystore | basename }}"
+    owner: "{{ es_user }}"
+    group: "{{ es_group }}"
+    mode: "640"
+  when: app_search_ssl_keystore and app_search_ssl_enabled
+  notify: restart app-search
+  register: copy_keystore
