@@ -25,8 +25,12 @@ es_ssl_key:  "tests/integration/files/certs/keystore-password.p12"
 es_ssl_key_password: elastic
 es_ssl_verify: "true"
 
+listen_host: "127.0.0.1"
+listen_port: 3002
+external_url: "http://localhost:3002"
+
 app_search_ssl_enabled: true
 app_search_ssl_keystore: "tests/integration/files/certs/keystore-password.p12"
 app_search_ssl_keystore_password: elastic
-app_search_ssl_keystore_key_password: elastic
+app_search_ssl_keystore_key_pass: elastic
 

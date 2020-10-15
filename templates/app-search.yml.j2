@@ -40,8 +40,8 @@ elasticsearch.ssl.enabled: true
 {% if es_ssl_ca %}
 elasticsearch.ssl.certificate_authority: {{es_ssl_certificate_path}}/{{ es_ssl_ca | basename }}
 {% elif es_ssl_key and es_ssl_certificate and es_ssl_key_password %}
-elasticsearch.ssl.certificate: {{es_ssl_certificate}}
-elasticsearch.ssl.key: {{es_ssl_key}}
+elasticsearch.ssl.certificate: {{es_ssl_certificate_path}}/{{es_ssl_certificate | basename}}
+elasticsearch.ssl.key: {{es_ssl_certificate_path}}/{{es_ssl_key | basename}}
 elasticsearch.ssl.key_passphrase: {{es_ssl_key_password}}
 {% endif %}
 {% if es_ssl_verify %}
@@ -65,7 +65,7 @@ elasticsearch.ssl.verify: {{ es_ssl_verify }}
 # * A FQDN: http://example.com
 # * Shortname defined via /etc/hosts: http://app-search.search
 #
-#app_search.external_url: http://localhost:3002
+app_search.external_url: {{app_search_external_url}}
 #
 # Web application listen_host and listen_port.
 # Your application will run on this host and port.
@@ -73,8 +73,8 @@ elasticsearch.ssl.verify: {{ es_ssl_verify }}
 # * app_search.listen_host: Must be a valid IPv4 or IPv6 address.
 # * app_search.listen_port: Must be a valid port number (1-65535).
 #
-#app_search.listen_host: 127.0.0.1
-#app_search.listen_port: 3002
+app_search.listen_host: {{app_search_listen_host}}
+app_search.listen_port: {{app_search_listen_port}}
 #
 # ------------------------------ Authentication -------------------------------
 #
@@ -89,7 +89,7 @@ elasticsearch.ssl.verify: {{ es_ssl_verify }}
 #
 {% if app_search_auth_src %}
 app_search.auth.source: {{app_search_auth_src}}
-{%endif%}}
+{%endif%}
 #
 # (SAML only) Name of the realm within the Elasticsearch realm chain.
 #
