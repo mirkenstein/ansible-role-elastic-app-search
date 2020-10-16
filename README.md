@@ -69,9 +69,9 @@ Including an example of how to use your role (for instance, with variables passe
 
 
 ####Inventory file
+
     [server]
     ssh-server-alias
-    
     [server:vars]
     heap_size=512M
     #Elasticsearch connection settings
@@ -87,6 +87,7 @@ Including an example of how to use your role (for instance, with variables passe
     keystore_filename=example.com.pfx
     keystore_pass=p12KeystorePassHere
     keystore_key_pass=p12KeystorePassHere
+    
 License
 -------
 
