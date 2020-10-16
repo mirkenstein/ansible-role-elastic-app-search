@@ -68,7 +68,8 @@ Including an example of how to use your role (for instance, with variables passe
         app_search_ssl_keystore_key_password:  "{{hostvars[inventory_hostname].keystore_key_pass}}"
 
 
-####Inventory file
+Inventory file
+----------------
 
     [server]
     ssh-server-alias
