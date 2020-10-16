@@ -18,19 +18,20 @@ es_app_search_pass: changeme
 
 app_search_auth_src: elasticsearch-native
 es_ssl_enabled: true
-#es_ssl_ca: "tests/integration/files/certs/shared-store-no-password-ca.p12"
-es_ssl_ca: false
+es_ssl_ca: "tests/integration/files/certs/shared-store-no-password-ca.p12"
+#es_ssl_ca: false
 es_ssl_certificate: "tests/integration/files/certs/shared-store-no-password.p12"
 es_ssl_key:  "tests/integration/files/certs/keystore-password.p12"
 es_ssl_key_password: elastic
 es_ssl_verify: "true"
 
-listen_host: "127.0.0.1"
-listen_port: 3002
-external_url: "http://localhost:3002"
+app_search_listen_host: "127.0.0.1"
+app_search_listen_port: 3002
+app_search_external_url: "http://localhost:3002"
 
 app_search_ssl_enabled: true
 app_search_ssl_keystore: "tests/integration/files/certs/keystore-password.p12"
 app_search_ssl_keystore_password: elastic
-app_search_ssl_keystore_key_pass: elastic
+app_search_ssl_keystore_key_password: elastic
+
 
