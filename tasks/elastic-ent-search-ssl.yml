@@ -40,11 +40,11 @@
 - name: Upload SSL/TLS keystore
   become: yes
   copy:
-    src: "{{ app_search_ssl_keystore }}"
-    dest: "{{ es_ssl_certificate_path }}/{{ app_search_ssl_keystore | basename }}"
+    src: "{{ ent_search_ssl_keystore }}"
+    dest: "{{ es_ssl_certificate_path }}/{{ ent_search_ssl_keystore | basename }}"
     owner: "{{ es_user }}"
     group: "{{ es_group }}"
     mode: "640"
-  when: app_search_ssl_keystore and app_search_ssl_enabled
+  when: ent_search_ssl_keystore and ent_search_ssl_enabled
   notify: restart enterprise-search
   register: copy_keystore

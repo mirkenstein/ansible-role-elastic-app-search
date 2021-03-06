@@ -7,8 +7,8 @@ es_start_service: true
 es_restart_on_change: true
 
 
-es_user: app-search
-es_group: app-search
+es_user: enterprise-search
+es_group: enterprise-search
 
 es_conf_dir: "/usr/share/enterprise-search/config"
 es_ssl_certificate_path: "{{ es_conf_dir }}/certs"

@@ -42,19 +42,6 @@ elasticsearch.password: {{es_ent_search_pass}}
 #  X-My-Header: Contents of the header
 #
 # Elasticsearch SSL settings:
-{% if es_ssl_enabled %}
-elasticsearch.ssl.enabled: true
-  {% if es_ssl_ca %}
-elasticsearch.ssl.certificate_authority: {{es_ssl_certificate_path}}/{{ es_ssl_ca | basename }}
-  {% elif es_ssl_key and es_ssl_certificate and es_ssl_key_password %}
-elasticsearch.ssl.certificate: {{es_ssl_certificate_path}}/{{es_ssl_certificate | basename}}
-elasticsearch.ssl.key: {{es_ssl_certificate_path}}/{{es_ssl_key | basename}}
-elasticsearch.ssl.key_passphrase: {{es_ssl_key_password}}
-  {% endif %}
-  {% if es_ssl_verify %}
-elasticsearch.ssl.verify: {{ es_ssl_verify }}
-  {% endif %}
-  {% endif %}
 
 #
 #elasticsearch.ssl.enabled: false
@@ -63,7 +50,6 @@ elasticsearch.ssl.verify: {{ es_ssl_verify }}
 #elasticsearch.ssl.key:
 #elasticsearch.ssl.key_passphrase:
 #elasticsearch.ssl.verify: true
-#{% endif %}
 #
 # Elasticsearch startup retry:
 #
@@ -307,19 +293,13 @@ filebeat_log_directory: /var/log/enterprise-search
 #
 # Configure TLS/SSL encryption.
 #
-{ % if ent_search_ssl_enabled % }
-ent_search.ssl.enabled: true
-ent_search.ssl.keystore.path: {{es_ssl_certificate_path}}/{{ ent_search_ssl_keystore | basename }}
-ent_search.ssl.keystore.password: {{ent_search_ssl_keystore_password}}
-ent_search.ssl.keystore.key_password: {{ent_search_ssl_keystore_key_password}}
-#ent_search.ssl.redirect_http_from_port:
-{% endif %}
+
 #ent_search.ssl.enabled: false
 #ent_search.ssl.keystore.path:
 #ent_search.ssl.keystore.password:
 #ent_search.ssl.keystore.key_password:
 #ent_search.ssl.redirect_http_from_port:
-#{% endif %}
+
 #
 # ---------------------------------- Session ----------------------------------
 #
