@@ -40,54 +40,57 @@ Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+```yaml
+- name: Install and Configure Elastic App-search
+  hosts: server
+  roles:
+    - role: app-search
+  vars:
+    es_host: "{{hostvars[inventory_hostname].es_host}}" 
+    es_ent_search_user: "{{hostvars[inventory_hostname].es_ent_search_user}}"
+    es_ent_search_pass: "{{hostvars[inventory_hostname].es_ent_search_pass}}"
+    es_version: 7.10.1
+    es_use_repository: false
+    es_ssl_enabled: true
+    es_ssl_ca: "files/certs/{{hostvars[inventory_hostname].es_ssl_ca_filename}}"
+    #es_ssl_certificate: "files/certs/{{hostvars[inventory_hostname].es_ssl_certificate_filename}}"
+    #es_ssl_key:  "files/certs/{{hostvars[inventory_hostname].es_ssl_key_filename}}"
+    #es_ssl_key_password: "{{hostvars[inventory_hostname].es_ssl_key_pass}}"
+    es_ssl_verify: "true"
+    #Host and URL
+    app_search_listen_host: "{{hostvars[inventory_hostname].listen_host}}"
+    app_search_listen_port: "{{hostvars[inventory_hostname].listen_port}}"
+    app_search_external_url: "{{hostvars[inventory_hostname].external_url}}"
+    #SSL 
+    ent_search_ssl_enabled: true
+    ent_search_ssl_keystore: "files/certs/{{hostvars[inventory_hostname].keystore_filename}}"
+    ent_search_ssl_keystore_password: "{{hostvars[inventory_hostname].keystore_pass}}"
+    ent_search_ssl_keystore_key_password:  "{{hostvars[inventory_hostname].keystore_key_pass}}"
 
-    - name: Install and Configure Elastic App-search
-      hosts: server
-      roles:
-        - role: app-search
-      vars:
-        es_host: "{{hostvars[inventory_hostname].es_host}}" 
-        es_app_search_user: "{{hostvars[inventory_hostname].es_app_search_user}}"
-        es_app_search_pass: "{{hostvars[inventory_hostname].es_app_search_pass}}"
-        es_version: 7.6.2
-        es_use_repository: false
-        es_ssl_enabled: true
-        es_ssl_ca: "files/certs/{{hostvars[inventory_hostname].es_ssl_ca_filename}}"
-        #es_ssl_certificate: "files/certs/{{hostvars[inventory_hostname].es_ssl_certificate_filename}}"
-        #es_ssl_key:  "files/certs/{{hostvars[inventory_hostname].es_ssl_key_filename}}"
-        #es_ssl_key_password: "{{hostvars[inventory_hostname].es_ssl_key_pass}}"
-        es_ssl_verify: "true"
-        #Host and URL
-        app_search_listen_host: "{{hostvars[inventory_hostname].listen_host}}"
-        app_search_listen_port: "{{hostvars[inventory_hostname].listen_port}}"
-        app_search_external_url: "{{hostvars[inventory_hostname].external_url}}"
-        #SSL 
-        app_search_ssl_enabled: true
-        app_search_ssl_keystore: "files/certs/{{hostvars[inventory_hostname].keystore_filename}}"
-        app_search_ssl_keystore_password: "{{hostvars[inventory_hostname].keystore_pass}}"
-        app_search_ssl_keystore_key_password:  "{{hostvars[inventory_hostname].keystore_key_pass}}"
+```
 
 
 Inventory file
 ----------------
+```shell
+[server]
+ssh-server-alias
+[server:vars]
+#Elasticsearch connection settings
+es_host=es1-node.example.com
+es_ent_search_user=elastic
+es_ent_search_pass=changeme
+cert_pass=myCertPass
+es_ssl_ca_filename=server-ca.pem
+#App search settings
+listen_host=10.0.0.11
+listen_port=3002
+external_url=https://example.com:3002
+keystore_filename=example.com.pfx
+keystore_pass=p12KeystorePassHere
+keystore_key_pass=p12KeystorePassHere
 
-    [server]
-    ssh-server-alias
-    [server:vars]
-    heap_size=512M
-    #Elasticsearch connection settings
-    es_host=es1-node.example.com
-    es_app_search_user=elastic
-    es_app_search_pass=changeme
-    cert_pass=myCertPass
-    es_ssl_ca_filename=server-ca.pem
-    #App search settings
-    listen_host=10.0.0.11
-    listen_port=3002
-    external_url=https://example.com:3002
-    keystore_filename=example.com.pfx
-    keystore_pass=p12KeystorePassHere
-    keystore_key_pass=p12KeystorePassHere
+```
     
 License
 -------
