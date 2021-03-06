@@ -1,9 +1,9 @@
 ---
 
 - name: Include specific Elasticsearch
-  include: elastic-app-search-Debian.yml
+  include: elastic-ent-search-Debian.yml
   when: ansible_os_family == 'Debian'
 
 - name: Include specific Elasticsearch
-  include: elastic-app-search-RedHat.yml
+  include: elastic-ent-search-RedHat.yml
   when: ansible_os_family == 'RedHat'

@@ -21,7 +21,7 @@
     - "{{ es_ssl_key }}"
     - "{{ es_ssl_certificate }}"
   when: es_ssl_key and es_ssl_certificate
-  notify: restart app-search
+  notify: restart enterprise-search
   register: copy_certificates
 
 - name: Upload Elasticsearch CA Certificate
@@ -33,7 +33,7 @@
     group: "{{ es_group }}"
     mode: "640"
   when: es_ssl_ca and es_ssl_enabled
-  notify: restart app-search
+  notify: restart enterprise-search
   register: copy_es_cafile
 
 
@@ -46,5 +46,5 @@
     group: "{{ es_group }}"
     mode: "640"
   when: app_search_ssl_keystore and app_search_ssl_enabled
-  notify: restart app-search
+  notify: restart enterprise-search
   register: copy_keystore

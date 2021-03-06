@@ -1,7 +1,8 @@
 ---
 # defaults file for elastic-app-search
-es_version: "7.6.2"
+es_version: "7.10.1"
 es_use_repository: false
+es_repo_base: "https://artifacts.elastic.co"
 es_start_service: true
 es_restart_on_change: true
 
@@ -9,14 +10,14 @@ es_restart_on_change: true
 es_user: app-search
 es_group: app-search
 
-es_conf_dir: "/usr/share/app-search/config"
+es_conf_dir: "/usr/share/enterprise-search/config"
 es_ssl_certificate_path: "{{ es_conf_dir }}/certs"
 
 es_host: localhost
-es_app_search_user: elastic
-es_app_search_pass: changeme
+es_ent_search_user: elastic
+es_ent_search_pass: changeme
 
-app_search_auth_src: elasticsearch-native
+ent_search_auth_src: elasticsearch-native
 es_ssl_enabled: true
 es_ssl_ca: "tests/integration/files/certs/shared-store-no-password-ca.p12"
 #es_ssl_ca: false
@@ -25,13 +26,13 @@ es_ssl_key:  "tests/integration/files/certs/keystore-password.p12"
 es_ssl_key_password: elastic
 es_ssl_verify: "true"
 
-app_search_listen_host: "127.0.0.1"
-app_search_listen_port: 3002
-app_search_external_url: "http://localhost:3002"
+ent_search_listen_host: "127.0.0.1"
+ent_search_listen_port: 3002
+ent_search_external_url: "http://localhost:3002"
 
-app_search_ssl_enabled: true
-app_search_ssl_keystore: "tests/integration/files/certs/keystore-password.p12"
-app_search_ssl_keystore_password: elastic
-app_search_ssl_keystore_key_password: elastic
+ent_search_ssl_enabled: true
+ent_search_ssl_keystore: "tests/integration/files/certs/keystore-password.p12"
+ent_search_ssl_keystore_password: elastic
+ent_search_ssl_keystore_key_password: elastic
 
 
