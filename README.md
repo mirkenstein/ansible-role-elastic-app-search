@@ -5,6 +5,12 @@ A brief description of the role goes here.
 
 Requirements
 ------------
+### Java 11 or lower
+```shell
+ansible-galaxy install lean_delivery.java
+```
+
+
 ```shell script
 cd roles
 ln -s  /path/to/ansible-role-elastic-app-search/ app-search
@@ -41,12 +47,17 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 ```yaml
-- name: Install and Configure Elastic App-search
+- name: Install and Configure Elastic Enterprise-search
   hosts: server
   roles:
-    - role: app-search
+    - role: lean_delivery.java
+      java_major_version: 11
+      java_tarball_install: true
+      transport: web
+      transport_web: https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
+    - role: ent-search
   vars:
-    es_host: "{{hostvars[inventory_hostname].es_host}}" 
+    es_host: "{{hostvars[inventory_hostname].es_host}}"
     es_ent_search_user: "{{hostvars[inventory_hostname].es_ent_search_user}}"
     es_ent_search_pass: "{{hostvars[inventory_hostname].es_ent_search_pass}}"
     es_version: 7.10.1
@@ -58,14 +69,16 @@ Including an example of how to use your role (for instance, with variables passe
     #es_ssl_key_password: "{{hostvars[inventory_hostname].es_ssl_key_pass}}"
     es_ssl_verify: "true"
     #Host and URL
-    app_search_listen_host: "{{hostvars[inventory_hostname].listen_host}}"
-    app_search_listen_port: "{{hostvars[inventory_hostname].listen_port}}"
-    app_search_external_url: "{{hostvars[inventory_hostname].external_url}}"
-    #SSL 
+    ent_search_listen_host: "{{ ansible_default_ipv4.address }}"
+    #    ent_search_listen_host: "{{hostvars[inventory_hostname].listen_host}}"
+    ent_search_listen_port: "{{hostvars[inventory_hostname].listen_port}}"
+    ent_search_external_url: "{{hostvars[inventory_hostname].external_url}}"
+    #SSL
     ent_search_ssl_enabled: true
     ent_search_ssl_keystore: "files/certs/{{hostvars[inventory_hostname].keystore_filename}}"
     ent_search_ssl_keystore_password: "{{hostvars[inventory_hostname].keystore_pass}}"
     ent_search_ssl_keystore_key_password:  "{{hostvars[inventory_hostname].keystore_key_pass}}"
+
 
 ```
 

@@ -12,8 +12,7 @@
 #
 # Encryption keys to protect your application secrets. This field is required.
 #
-#secret_management.encryption_keys: []
-#
+secret_management.encryption_keys: [0c69c064f5413462e9775b0892b79abbc6ef93b2f0943f13c460357ae3d0csdginsdaw]
 # ------------------------------- Elasticsearch -------------------------------
 #
 # Enterprise Search needs one-time permission to alter Elasticsearch settings.
@@ -21,7 +20,7 @@
 # true. Or, adjust Elasticsearch's config/elasticsearch.yml instead.
 # See README.md for more details.
 #
-#allow_es_settings_modification: false
+allow_es_settings_modification: true
 #
 # Elasticsearch full cluster URL:
 #
@@ -42,19 +41,23 @@ elasticsearch.password: {{es_ent_search_pass}}
 #  X-My-Header: Contents of the header
 #
 # Elasticsearch SSL settings:
-  {% if es_ssl_enabled %}
+{% if es_ssl_enabled %}
+
 elasticsearch.ssl.enabled: true
-  {% if es_ssl_ca %}
+{% if es_ssl_ca %}
 elasticsearch.ssl.certificate_authority: "{{es_ssl_certificate_path}}/{{ es_ssl_ca | basename }}"
-  {% elif es_ssl_key and es_ssl_certificate and es_ssl_key_password %}
+
+{% elif es_ssl_key and es_ssl_certificate and es_ssl_key_password %}
+
 elasticsearch.ssl.certificate: "{{es_ssl_certificate_path}}/{{es_ssl_certificate | basename}}"
 elasticsearch.ssl.key: "{{es_ssl_certificate_path}}/{{es_ssl_key | basename}}"
 elasticsearch.ssl.key_passphrase: {{es_ssl_key_password}}
-  {% endif %}
-  {% if es_ssl_verify %}
+{% endif %}
+{% if es_ssl_verify %}
+
 elasticsearch.ssl.verify: {{ es_ssl_verify }}
-  {% endif %}
-  {% endif %}
+{% endif %}
+{% endif %}
 
 #
 #elasticsearch.ssl.enabled: false
